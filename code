@@ -1,0 +1,55 @@
+import mysql.connector
+choice=int(input('''How do you want to proceed?: 
+1.Insert values
+2.Modify values
+3.Delete values
+4.display values'''))
+
+mydb = mysql.connector.connect(
+    host="your_host",
+    user="your_username",
+    password="your_password",
+    database="inventory_system"
+)
+
+cursor = mydb.cursor()
+
+def add_product(name, description, quantity, price):
+    sql = "INSERT INTO products (product_name, description, quantity, price) VALUES (%s, %s, %s, %s)"
+    val = (name, description, quantity, price)
+    cursor.execute(sql, val)
+    mydb.commit()
+    print("Product added successfully!")
+
+def delete_product(product_id):
+    sql = "DELETE FROM products WHERE product_id = %s"
+    val = (product_id,)
+    cursor.execute(sql, val)
+    mydb.commit()
+    print("Product deleted successfully!")
+
+def modify_product(product_id, new_name, new_description, new_quantity, new_price):
+    sql = "UPDATE products SET product_name = %s, description = %s, quantity = %s, price = %s WHERE product_id = %s"
+    val = (new_name, new_description, new_quantity, new_price, product_id)
+    cursor.execute(sql, val)
+    mydb.commit()
+    print("Product modified successfully!")
+
+def get_all_products():
+    cursor.execute("SELECT * FROM products")
+    result = cursor.fetchall()
+    for row in result:
+        print(row)
+if choice==1:
+    add_product()
+elif choice==2:
+    modify_product()
+elif choice==3:
+    delete_product()
+elif choice==4:
+    get_all_products()
+else:
+    print('wrong input')
+
+
+mydb.close()
