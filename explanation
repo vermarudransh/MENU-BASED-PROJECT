@@ -1,0 +1,59 @@
+This Python code is a basic inventory system using MySQL as the database. Let's break down the code and understand its components:
+
+User Input:
+
+The user is prompted to choose an action: insert values (1), modify values (2), delete values (3), or display values (4).
+The user's choice is stored in the variable choice.
+Database Connection:
+
+The script connects to a MySQL database using the mysql.connector library. The connection details (host, user, password, and database) need to be provided.
+python
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    mydb = mysql.connector.connect(
+        host="your_host",
+        user="your_username",
+        password="your_password",
+        database="inventory_system"
+
+    )
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Cursor Initialization:
+A cursor is created to interact with the MySQL database.
+python
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    cursor = mydb.cursor()
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Functions:
+Several functions are defined to perform various operations on the database.
+add_product: Inserts a new product into the database.
+delete_product: Deletes a product based on the provided product ID.
+modify_product: Updates the details of a product based on the provided product ID.
+get_all_products: Retrieves and displays all products from the database.
+
+User Choice Handling:
+
+Based on the user's choice, one of the functions is called:
+
+If choice == 1, add_product() is called.
+If choice == 2, modify_product() is called.
+If choice == 3, delete_product() is called.
+If choice == 4, get_all_products() is called.
+If none of the above, an error message is displayed.
+python
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if choice == 1:
+        add_product()
+    elif choice == 2:
+        modify_product()
+    elif choice == 3:
+        delete_product()
+    elif choice == 4:
+        get_all_products()
+    else:
+        print('wrong input')
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Database Connection Closure:
+Finally, the database connection is closed.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    mydb.close()
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
