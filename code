@@ -6,10 +6,10 @@ choice=int(input('''How do you want to proceed?:
 4.display values'''))
 
 mydb = mysql.connector.connect(
-    host="your_host",
-    user="your_username",
-    password="your_password",
-    database="inventory_system"
+    host='localhost',
+    user="root",
+    password="root",
+    database="mydb"
 )
 
 cursor = mydb.cursor()
