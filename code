@@ -8,7 +8,7 @@ choice=int(input('''How do you want to proceed?:
 mydb = mysql.connector.connect(
     host='localhost',
     user="root",
-    password="root",
+    passwd="root",
     database="mydb"
 )
 
