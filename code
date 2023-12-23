@@ -11,9 +11,16 @@ mydb = mysql.connector.connect(
     password="root",
     database="mydb"
 )
-
 cursor = mydb.cursor()
-
+qu='use mydb'
+cursor.execute(qu)
+qur='''create table if not exists(
+  product_name primary key
+  description 
+  quantity
+  price
+)'''
+cursor.execute(qur)
 def add_product(name, description, quantity, price):
     sql = "INSERT INTO products (product_name, description, quantity, price) VALUES (%s, %s, %s, %s)"
     val = (name, description, quantity, price)
